@@ -1,0 +1,31 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+int mod=1e9+7;
+
+long long int power(long long int x,long long int n,long long int mod)
+{
+   long long int result=1;
+    while(n>0)
+     {
+        if(n%2==1)
+         result=(result*x)%mod;
+          x=(x*x)%mod;
+          n/=2;
+     }
+     return result;
+  
+}
+
+long long int modinverse(long long int a,long long int m) 
+{
+    return power(a,m-2,m);
+}
+int main()
+{
+    //finding modulae_inverce of a under modulo M;
+     long long int ans,a,M;
+    ans=modinverce(a,M);
+    cout<<ans<<"\n";
+
+}

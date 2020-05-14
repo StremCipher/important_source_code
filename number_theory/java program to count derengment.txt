@@ -1,0 +1,44 @@
+// A Dynamic programming based 
+// java program to count derangements 
+import java.io.*;
+import java.util.Scanner;
+import java.math.BigInteger; 
+class GFG 
+{ 
+	
+	// Function to count 
+	// derangements 
+	static BigInteger  countDer(int n) 
+	{ 
+		// Create an array to store 
+		// counts for subproblems 
+		BigInteger  der[] = new BigInteger [n + 1]; 
+	
+		// Base cases 
+		der[0] = BigInteger.valueOf(1); 
+		der[1] = BigInteger.valueOf(0); 
+		der[2] = BigInteger.valueOf(1);  
+	
+		// Fill der[0..n] in bottom up 
+		// manner using above recursive 
+		// formula 
+		for (int i = 3; i <= n; ++i) 
+der[i] = BigInteger.valueOf(i - 1) .multiply(der[i - 1].add(der[i - 2]));
+	
+		// Return result for n 
+		return der[n]; 
+	} 
+	
+	// Driver program 
+	public static void main (String[] args) 
+	{ 
+	int N;
+	Scanner sc = new Scanner(System.in);
+	 N = sc.nextInt();
+		System.out.println(countDer(N));
+		System.out.println("\n");
+	
+	} 
+} 
+
+// This code is contributed by vt_m 

@@ -1,0 +1,46 @@
+//==============================================================================
+#include <iostream>           //  CCCCC RRRRR  EEEEE  AAA   TTTTT EEEEE DDDD
+#include<algorithm>           //  C     R  R   E     A   A    T   E     D   D
+#include<bits/stdc++.h>       //  C     RRRR   EEEE  AAAAA    T   EEEE  D   D
+#include<cstring>             //  C     R  R   E     A   A    T   E     D   D
+#include<vector>              //  CCCCC R   R  EEEEE A   A    T   EEEEE DDDD
+//==============================================================================
+#include<stack>               //  BBBB   Y   Y
+#include<queue>               //  B   B   Y Y
+#include<deque>               //  BBBB     Y
+#include<cmath>               //  B   B    Y
+#include<numeric>             //  BBBB     Y
+//==============================================================================
+#include<utility>             //   AAA  M   M M   M IIIII TTTTT
+//#include<unordered_map>     //  A   A MMMMM MMMMM   I     T
+//#include<unordered_set>     //  AAAAA M M M M M M   I     T
+//#include<unordered_set>     //  A   A M   M M   M   I     T
+//aaaaaaaaaaaaaaaaaaaaaaa     //  A   A M   M M   M IIIII   T
+//==============================================================================
+/*
+  //representation of graph using adjacency matrix
+  //
+*/
+
+using namespace std;
+
+bool adjacency_mat[100][100];
+void initialize()
+{
+for(int i=0;i<100;i++)
+for(int j=0;<100;j++)
+adjacency_mat[i][j]=false;
+
+}
+int main() 
+{
+     initialize();
+	int vertex,edge,x,y;
+	cin>>vertex>>edge;
+	for(int i=0;i<edge;i++)
+	{
+	     cin>>x>>y;
+	     adjacency_mat[x][y]=true;
+	     adjacency_mat[y][x]=true;//if graph is undirected;
+	}
+}
