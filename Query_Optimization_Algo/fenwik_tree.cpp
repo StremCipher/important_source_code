@@ -30,6 +30,7 @@ void updateBIT(int index,ll value,int n)
 		index+=index&(-index);
 	}
 }
+
 constructBIT(ll a[],int n)
 {
 	memset(BIT_array,0,sizeof BIT_array);
