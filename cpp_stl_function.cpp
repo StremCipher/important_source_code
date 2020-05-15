@@ -1,24 +1,175 @@
- /*  CREATED BY
+/*  CREATED BY
     STREAM_CIPHER
     03-apr-2020
 */
-//important c++ stl library function
 #include<bits/stdc++.h>
-typedef long long  ll ;
 using namespace std;
+typedef long long int ll;
 int main()
-{ 
+{
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     #ifndef ONLINE_JUDGE
-    freopen("input.txt","r",stdin); 
-    freopen("output.txt","w",stdout);    
+        freopen("input.txt","r",stdin);
+        freopen("output.txt","w",stdout);
     #endif
 /************************************************COMBINOTRICS**********************************************************************/
     .next_permutation(a.begin(),a.end());//change a to its's next permutation
     .prev_permutation(a.begin(),a.end());//change a to its's prev premutatio
     .is_permutation(a.begin(),a.begin()+range,b);//return true if 'b' is a premutation of 'a' (from start to range) 
                                                   // time complexity of above 3 is at most n/2 swaps
+
+/************************************************SET in C++ STL ********************************************************************/
+    .set always store data in sorted order so it can be used as min_heap or max_heap
+    .as the name suggest it always store oly the uniq element 
+    .set is a container to all the container function can be aplied on it like.iterator
+                                                                              .max(),min()
+                                                                              .lower_bound(),upper_bound()...etc
+    .set<int>a;//creating a set
+    .a.insert(value);//inserting a value to a
+    .a.begin();//return pointer to first element
+    .a.end();//return pointer to last element ,which is always null
+    .a.rbegin();//return pointer to actual last element ,or it return 1 element previous to a.end()
+    .a.crbegin();//return pointer to actual last element ,or it return 1 element previous to a.end()
+                both are work same but i don''t know the exact difference
+    .a.size();
+    .a.empty();//return true if a is empty
+    .a.erase(value);//delete only index having value=value
+    .a.clear();//clear whole set
+    .a.find(value)//to find if value is present or not
+
+    .these are not available in queue
+    .a.sort();
+/************************************************queue in C++ STL ******************************************************************/
+    .as we all know properties of queue it work on "FIFO"(first in first out)
+                                                                              
+    .queue<int>a;//creating a queue
+    .a.push (value);//inserting a value to a
+    .a.pop();
+    .a.front();//return pointer to first element
+    .a.back();//return pointer to last element
+    
+    .a.size();
+    .a.empty();//return true if a is empty
+
+    .these are not available in queue
+    .a.erase(value);
+    .a.clear();
+    .a.sort();
+    .a.lower_bound(value);
+    .a.upper_bound(value);
+    
+/************************************************deque in C++ STL ******************************************************************/
+    .in deque element can be added or deleted from both side
+    
+                                                                            
+    .deque<int>a;//creating a deque
+    .a.push_back(value);//inserting a value to a in back
+    .a.push_front(value);//inserting a value to a in front
+    .a.pop_back();//remove the last elment
+    .a.pop_front();//remove the first elment
+    .a.begin();//return pointer to first element
+    .a.end();//return pointer to last element ,which is always null
+    .a.rbegin();//return pointer to actual last element ,or it return 1 element previous to a.end()
+    .a.crbegin();//return pointer to actual last element ,or it return 1 element previous to a.end()
+                both are work same but i don''t know the exact difference
+    .a.size();
+    .a.empty();//return true if a is empty
+
+    .these are not available in queue
+    .a.erase(value);
+    .a.clear();
+    .a.find(value)
+    .a.sort();
+    .a.lower_bound(value);
+    .a.upper_bound(value);
+
+/************************************************priority_queue in C++ STL *********************************************************/ 
+    .priority_queue always store data in sorted order so it can be used as min_heap or max_heap
+    .priority_queue<int>a;//creating a priority_queue
+    .a.push(value);//inserting a value to a 
+    .a.pop();//remove the most prior element
+    .a.size();
+    .a.empty();//return true if a is empty
+
+    .these are not available in priority_queue
+    .a.begin();
+    .a.end();
+    .a.erase(value);
+    .a.clear();
+    .a.find(value)
+    .a.sort();
+    .a.lower_bound(value);
+    .a.upper_bound(value);
+/************************************************stack in C++ STL ******************************************************************/
+    .as we all know properties of queue it work on "LIFO"(last in first out)
+    .stack<int>a;//creating a priority_queue
+    .a.push(value);//inserting a value to a 
+    .a.pop();//remove the top element
+    .a.size();
+    .a.top();//acces top elemnt
+    .a.empty();//return true if a is empty
+
+    .these are not available in priority_queue
+    .a.begin();
+    .a.end();
+    .a.erase(value);
+    .a.clear();
+    .a.find(value)
+    .a.sort();
+    .a.lower_bound(value);
+    .a.upper_bound(value);
+/************************************************vector in C++ STL *****************************************************************/
+    vector is nothing but dynamic array
+    all the container function are apllicable on it like.sort()
+                                                        .lower_bound()
+                                                        .upper_bound()
+                                                        .etc....
+                                                        .stack<int>a;//creating a priority_queue
+    .a.push_back(value);//inserting a value to a 
+    .a.pop_back();//remove the last element
+    .a.pop_front();//remove the front element
+    .a.size();
+    .a.front();//acces firsr elemnt
+    .a.back();//acces alst elemnt
+    .a.empty();//return true if a is empty
+    .a.begin();//return pointer 
+    .a.end();//return ponter
+    .a.rbegin();//return pointer to actual last element ,or it return 1 element previous to a.end()
+    .a.crbegin();//return pointer to actual last element ,or it return 1 element previous to a.end()
+                both are work same but i don''t know the exact difference
+    .a.erase(value);
+    .a.clear();
+    .a.sort();
+    .a.reverse();
+    .a.lower_bound(value);
+    .a.upper_bound(value);
+
+    .these are not available in priority_queue
+    .a.find(value)
+/************************************************MAP in C++ STL ********************************************************************/
+    .map<int,int>a;
+    .a.insert({val1,val2});
+    .a.size();
+    .a.empty();//return true if a is empty
+    .a.begin();//return pointer to first index
+    .a.end();//return pointer to last index 
+    .a.rbegin();//return pointer to actual last element ,or it return 1 element previous to a.end()
+    .a.crbegin();//return pointer to actual last element ,or it return 1 element previous to a.end()
+                both are work same but i don''t know the exact difference
+    .a.erase(value);
+    .a.clear();//clear all 
+    .a.lower_bound(value);
+    .a.upper_bound(value);
+    .a.find(value)
+    .a.count(value)//return number of element equal to value
+
+    .these are not available in priority_queue
+    .a.sort();
+    .a.reverse();
+/************************************************ARRAY in C++ STL ******************************************************************/
+    
+/************************************************LIST in C++ STL *******************************************************************/
 
 /************************************************NUMBER_THEORY**********************************************************************/
     .max(a,b);
