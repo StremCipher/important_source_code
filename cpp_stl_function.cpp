@@ -38,7 +38,7 @@ int main()
     .a.clear();//clear whole set
     .a.find(value)//to find if value is present or not
 
-    .these are not available in queue
+    .these are not available in set
     .a.sort();
 /************************************************queue in C++ STL ******************************************************************/
     .as we all know properties of queue it work on "FIFO"(first in first out)
@@ -76,7 +76,7 @@ int main()
     .a.size();
     .a.empty();//return true if a is empty
 
-    .these are not available in queue
+    .these are not available in deque
     .a.erase(value);
     .a.clear();
     .a.find(value)
@@ -87,6 +87,7 @@ int main()
 /************************************************priority_queue in C++ STL *********************************************************/ 
     .priority_queue always store data in sorted order so it can be used as min_heap or max_heap
     .priority_queue<int>a;//creating a priority_queue
+    .priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, comp>q;//we can use compare to store inspesific order
     .a.push(value);//inserting a value to a 
     .a.pop();//remove the most prior element
     .a.size();
@@ -103,14 +104,14 @@ int main()
     .a.upper_bound(value);
 /************************************************stack in C++ STL ******************************************************************/
     .as we all know properties of queue it work on "LIFO"(last in first out)
-    .stack<int>a;//creating a priority_queue
+    .stack<int>a;//creating a stack
     .a.push(value);//inserting a value to a 
     .a.pop();//remove the top element
     .a.size();
     .a.top();//acces top elemnt
     .a.empty();//return true if a is empty
 
-    .these are not available in priority_queue
+    .these are not available in stack
     .a.begin();
     .a.end();
     .a.erase(value);
@@ -120,8 +121,8 @@ int main()
     .a.lower_bound(value);
     .a.upper_bound(value);
 /************************************************vector in C++ STL *****************************************************************/
-    vector is nothing but dynamic array
-    all the container function are apllicable on it like.sort()
+    .vector is nothing but dynamic array
+    .all the container function are apllicable on it like.sort()
                                                         .lower_bound()
                                                         .upper_bound()
                                                         .etc....
@@ -145,7 +146,7 @@ int main()
     .a.lower_bound(value);
     .a.upper_bound(value);
 
-    .these are not available in priority_queue
+    .these are not available in vector
     .a.find(value)
 /************************************************MAP in C++ STL ********************************************************************/
     .map<int,int>a;
@@ -164,7 +165,7 @@ int main()
     .a.find(value)
     .a.count(value)//return number of element equal to value
 
-    .these are not available in priority_queue
+    .these are not available in map
     .a.sort();
     .a.reverse();
 /************************************************ARRAY in C++ STL ******************************************************************/
