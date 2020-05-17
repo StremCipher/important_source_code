@@ -4,7 +4,8 @@
         queue <int> q;
         q.push(s);
         vis[ s ] = true;
-        while(!q.empty())
+        while(!q.empty()) 
+            
         {
             int parent_node = q.front();
             q.pop();

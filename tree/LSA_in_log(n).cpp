@@ -20,7 +20,7 @@ void precomputeSparseMatrix(ll n)
             if (parent[node][i-1] != -1) 
                 parent[node][i] = 
                     parent[parent[node][i-1]][i-1]; 
-        } 
+        }
     } 
 }
 ll lca(ll u, ll v) 

@@ -18,7 +18,7 @@ int main()
 	#ifndef ONLINE_JUDGE
 		freopen("input.txt","r",stdin);
 		freopen("output.txt","w",stdout);
-	#endif
+	#endif 
 		memset(difference_arr,0,sizeof difference_arr);
 		int query;
 		cin>>query;
