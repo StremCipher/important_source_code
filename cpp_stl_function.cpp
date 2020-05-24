@@ -37,6 +37,30 @@ int main()
     .a.erase(value);//delete only index having value=value
     .a.clear();//clear whole set
     .a.find(value)//to find if value is present or not
+    .a.lower_bound(value);
+    .a.upper_bound(value);
+
+    .these are not available in set
+    .a.sort();
+    /************************************************MULTISET in C++ STL ********************************************************************/
+     .MULTISET is same as set but it can store dublicates element also
+      so what is difference between multiset and priority_queue
+        .both are almost same but priority_queue is faster than multiset
+        .in priority_queue u can delete element from top index only but in multiset set u can delete any element if it exist like sets.
+    .multiset<int>a;//creating a set
+    .a.insert(value);//inserting a value to a
+    .a.begin();//return pointer to first element
+    .a.end();//return pointer to last element ,which is always null
+    .a.rbegin();//return pointer to actual last element ,or it return 1 element previous to a.end()
+    .a.crbegin();//return pointer to actual last element ,or it return 1 element previous to a.end()
+                both are work same but i don''t know the exact difference
+    .a.size();
+    .a.empty();//return true if a is empty
+    .a.erase(value);//delete only index having value=value
+    .a.clear();//clear whole set
+    .a.find(value)//to find if value is present or not
+    .a.lower_bound(value);
+    .a.upper_bound(value);
 
     .these are not available in set
     .a.sort();
