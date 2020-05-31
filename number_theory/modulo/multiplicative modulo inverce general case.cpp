@@ -3,9 +3,9 @@
 using namespace std;
 int mod=1e9+7;
 
-long long int power(long long int x,long long int n,long long int mod)
+ll power(ll x,ll n,ll mod)
 {
-   long long int result=1;
+   ll result=1;
     while(n>0)
      {
         if(n%2==1)
@@ -17,14 +17,14 @@ long long int power(long long int x,long long int n,long long int mod)
   
 }
 
-long long int modinverse(long long int a,long long int m) 
+ll modInverse(ll a,ll m) 
 {
     return power(a,m-2,m);
 }
 int main()
 {
     //finding modulae_inverce of a under modulo M;
-     long long int ans,a,M;
+     ll ans,a,M;
     ans=modinverce(a,M);
     cout<<ans<<"\n";
 
