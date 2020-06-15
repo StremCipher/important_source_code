@@ -6,6 +6,7 @@
 using namespace std;
 typedef long long int ll;
 #define debug(a) cout<<#a<<"="<<(a)<<"\n"
+#define fix_presisnes cout << fixed << setprecision(10)
 const double pi = acos(-1.0);
 int main()
 {
