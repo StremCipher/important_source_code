@@ -1,30 +1,31 @@
-void dfs(int start_node) //this is traverse top to bottom order
-{ 
-    vector<bool> visited(100009, false); 
-    stack<int> stack; 
-    stack.push(start_node); 
-    while (!stack.empty()) 
-    { 
-        int parent_node = stack.top(); 
-        stack.pop(); 
-        if (!visited[parent_node]) 
-            visited[parent_node] = true,cout<<parent_node<<" "; 
-        for (auto i = tree[parent_node].begin(); i != tree[parent_node].end(); ++i) 
-            if (!visited[*i]) 
-                stack.push(*i); 
-    } 
-    cout<<endl;
-}  
+
+void dfs(int start_node)//this is traverse top to bottom order
+{
+    bool vis[20000]={0};
+    stack<int>s;
+    s.push(start_node);
+    while(!s.empty())
+    {
+        int p=s.top();
+        s.pop();
+        if(!vis[p])
+            cout<<p+1<<" ";
+        vis[p]=true;
+        for(auto i:graph[p])
+        {
+            if(!vis[i])
+                s.push(i);
+        }
+    }
+}
 void dfs(int start)// this will traverse bottom to top order
 {
     vis[start]=1;
-    for(int i=0;i<tree[start].size();i++)
+    for(auto i:graph[start])
     {
-        if(vis[tree[start][i]]==0)
+        if(!vis[i])
         {
-            vis[tree[start][i]]=1;
-            parent[tree[start][i]]=start;
-            dfs(tree[start][i]);
+            dfs(i);
         }
     }
    cout<<start<<" ";

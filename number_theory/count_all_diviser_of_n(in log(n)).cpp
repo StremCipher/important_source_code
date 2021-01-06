@@ -1,12 +1,12 @@
-ll count_div(ll n) {
+int count_div(int n) {
     if(n==1)
     return 1;
-    ll ans=1;
-    for (ll i = 2;  i <= n; ++i) 
+    int ans=1;
+    for (int i = 2;  i <= n; ++i) 
     {
           if(n%i==0)
           {
-               ll temp=1;
+              int temp=1;
               while(n%i==0)
               {
                 n/=i;

@@ -8,24 +8,23 @@
 // subsequence ai, ai+1, ..., aj.
 #include<bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
 struct query
 {
-	ll l,r,index;
+	int l,r,index;
 };
-ll a[100000],final_ans[100000];
-ll answer=0;
-ll cnt[100000];
+int a[100000],final_ans[100000];
+int answer=0;
+int cnt[100000];
 query Q[100000];
-ll BLOCK=320;//sqrt(100000);
+int BLOCK=320;//sqrt(100000);
 //this add and remove fns depends on our logic
-void add(ll index)
+void add(int index)
 {
     cnt[a[index]]++;
     if(cnt[a[index]]==1) answer++;
 }
 
-void remove(ll index)
+void remove(int index)
 {
     cnt[a[index]]--;
     if(cnt[a[index]]==0) answer--;
@@ -53,17 +52,17 @@ int main()
 		cin>>q;
 		for(int i=0;i<q;i++)
 		{
-			ll left,right;
+			int left,right;
 			cin>>left>>right;
 			Q[i].index=i;
 			Q[i].l=--left;
 			Q[i].r=--right;
 		}
 		sort(Q,Q+q,cmp);
-		ll cl=0,cr=0;
+		int cl=0,cr=0;
 		for(int i=0;i<q;i++)
 		{
-			ll left=Q[i].l,right=Q[i].r;
+			int left=Q[i].l,right=Q[i].r;
 			while(cl<left)
 				remove(cl),cl++;
 			while(cl>left)
@@ -98,11 +97,11 @@ query range after sorting
 2 8
 4 8
 7 8
-first select all ranges a/t their blocks in case of tie sort a/t right values of ranges
-initially cl=0,cr=0
+first select aint ranges a/t their blocks in case of tie sort a/t right values of ranges
+initiainty cl=0,cr=0
 .now process first query then cl become 0 and cr become 1
-.process second query as we have alredy calculated ans for query cl to cr so for this query we will add those
- indices which are in query2 but not in query1 and we will remove those indices which are in query1 but not in
+.process second query as we have alredy calculated ans for query cl to cr so for this query we wiint add those
+ indices which are in query2 but not in query1 and we wiint remove those indices which are in query1 but not in
  query2 update cl and cr to current query range
 .repeate step to for remening query
 

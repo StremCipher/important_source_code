@@ -173,6 +173,16 @@ int main()
     .these are not available in vector
     .a.find(value)
 /************************************************MAP in C++ STL ********************************************************************/
+    struct hash_pair { 
+    template <class T1, class T2> 
+    size_t operator()(const pair<T1, T2>& p) const
+    { 
+        auto hash1 = hash<T1>{}(p.first); 
+        auto hash2 = hash<T2>{}(p.second); 
+        return hash1 ^ hash2; 
+    } 
+    }; 
+    .unordered_map<pair<int,int>,int,hash_pair>mp;//use hash_pair template otherwise u will get error
     .map<int,int>a;
     .a.insert({val1,val2});
     .a.size();
@@ -234,4 +244,5 @@ int main()
     .memset(array,0,sizeof array);//assining 0
     .memset(array,-1,sizeof array);//assining -1 
     .memset(array,0x3f3f3f3f,sizeof array);//assining 64 bit num
+
 }

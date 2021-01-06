@@ -6,55 +6,42 @@
 using namespace std;
 #define debug(a) cout<<#a<<"="<<(a)<<"\n"
 const double pi = acos(-1.0);
-typedef long long int ll;
 vector<int>tree[300000];
 int node_value[300000];
 int parent[300000][30];
 int depth[300000];
 int best,level=20;
 //this is for finding parent and depth
-void dfs_0(ll cur, ll prev) 
+void dfs_0(int cur,int prev) 
 { 
-    depth[cur] = depth[prev] + 1; 
-    parent[cur][0] = prev; 
-    for (ll i=0; i<tree[cur].size(); i++) 
-    { 
-        if (tree[cur][i] != prev) 
-            dfs_0(tree[cur][i], cur); 
-    } 
+    depth[cur]=depth[prev]+1; 
+    parent[cur][0]=prev;
+    for(auto i:tree[cur])
+        if(i!=prev)
+            dfs_0(i,cur);
 } 
-void precomputeSparseMatrix(ll n) 
+void precomputeSparseMatrix(int n) 
 { 
-    for (ll i=1; i<level; i++) 
-    { 
-        for (ll node = 1; node <= n; node++) 
-        { 
-            if (parent[node][i-1] != -1) 
-                parent[node][i] = 
-                    parent[parent[node][i-1]][i-1]; 
-        }
-    } 
+    for(int i=1;i<level;i++) 
+        for(int node=1;node <=n;node++)
+            if(parent[node][i-1]!=-1) 
+                parent[node][i]=parent[parent[node][i-1]][i-1];
 }
-ll lca(ll u, ll v) 
+int lca(int u,int v) 
 { 
-    if (depth[v] < depth[u]) 
-        swap(u, v); 
-  
-    ll diff = depth[v] - depth[u]; 
-    for (ll i=0; i<level; i++) 
-        if ((diff>>i)&1) 
-            v = parent[v][i]; 
-    if (u == v) 
+    if(depth[v]<depth[u]) 
+        swap(u, v);
+    int diff=depth[v]-depth[u]; 
+    for(int i=0;i<level;i++) 
+        if((diff>>i)&1)
+            v=parent[v][i]; 
+    if(u==v) 
         return u; 
-    for (ll i=level-1; i>=0; i--) 
-        if (parent[u][i] != parent[v][i]) 
-        { 
-            u = parent[u][i]; 
-            v = parent[v][i]; 
-        } 
-  
+    for(int i=level-1;i>=0;i--) 
+        if(parent[u][i]!=parent[v][i]) 
+            u=parent[u][i],v=parent[v][i]; 
     return parent[u][0]; 
-} 
+}
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -92,7 +79,6 @@ int main()
                 // u--,v--;
                 // cout<<node_value[u]<<endl;
                 int common=lca(u,v);//finding lca of u,v
-                
             }
         }
 }

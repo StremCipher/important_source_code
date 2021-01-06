@@ -3,24 +3,23 @@
 using namespace std;
 int mod=1e9+7;
 
-ll power(ll x,ll n,ll mod)
-{
-   ll result=1;
-    while(n>0)
-     {
-        if(n%2==1)
-         result=(result*x)%mod;
-          x=(x*x)%mod;
-          n/=2;
-     }
-     return result;
-  
+int power(int x, int y, int p) 
+{ 
+    int res = 1;   
+    x = x % p;  
+    while (y > 0) 
+    { 
+        if (y & 1) 
+            res = (res*x) % p;
+        y = y>>1;
+        x = (x*x) % p; 
+    } 
+    return res; 
 }
-
-ll modInverse(ll a,ll m) 
-{
-    return power(a,m-2,m);
-}
+int modInverse(int n, int p) 
+{ 
+    return power(n, p-2, p); 
+} 
 int main()
 {
     //finding modulae_inverce of a under modulo M;

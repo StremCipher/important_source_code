@@ -1,7 +1,8 @@
 /*  CREATED BY
     STREAM_CIPHER
-    29-aug-2020
+    05-sep-2020
 */
+//Rage min query in log(n),with update in log(n)
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long int
@@ -9,38 +10,36 @@ using namespace std;
 #define debug1(a) cout<<#a<<"="<<(a)<<"\n"
 #define debug2(a,b) cout<<#a<<"="<<(a)<<","<<#b<<"="<<(b)<<"\n"
 #define debug3(a,b,c) cout<<#a<<"="<<(a)<<","<<#b<<"="<<(b)<<","<<#c<<"="<<(c)<<"\n"
-#define fix_precision(n) cout << fixed << setprecision(n)
+#define fix_precision(n) cout<<fixed<<setprecision(n)
 #define all(a) a.begin(),a.end()
 const double pi=acos(-1.0);
 int inf=0x3f3f3f3f3f3f3f3f;
 const int mod=1e9+7;
-const int mx=5*1000000;
+const int mx=5*1000000;//5*64M bit ->5*8M byte ->40MB size for long long int (64 bit)
 int a[mx];
 int segtree[mx];
-// max size of array of segtree;
-// int x=(int)(ceil(log2(n)));
-// int max_size=2*(int)pow(2,x)-1;  
-void update(int l,int r,int update_index,int val,int index)
+int update(int l,int r,int update_index,int val,int index)
 {
-    if(l>update_index||r<update_index)
-        return;
-    if(l<=update_index&&r>=update_index)
-        segtree[index]+=val;
-    if(l!=r)
+    if(update_index<l||update_index>r)
+        return inf;
+    if(l==r)
     {
-        update(l,(l+r)/2,update_index,val,2*index);
-        update((l+r)/2+1,r,update_index,val,2*index+1);
+        segtree[index]=a[l]+val;
+        return segtree[index];
     }
+    if(l!=r)
+        return min(update(l,(l+r)/2,update_index,val,2*index),update((l+r)/2+1,r,update_index,val,2*index+1));
+    return inf;
 }
 int query(int l,int r,int start,int end,int index)
 {
     if(start<=l&&r<=end)
         return segtree[index];
-    if(start>r||end<l)
-        return 0;
+    if(l>end||r<start)
+        return inf;
     if(l==r)
         return segtree[index];
-    return query(l,(l+r)/2,start,end,2*index)+query((l+r)/2+1,r,start,end,2*index+1);
+    return min(query(l,(l+r)/2,start,end,index*2),query((l+r)/2+1,r,start,end,index*2+1));
 }
 int creat(int l,int r,int index)
 {
@@ -49,7 +48,7 @@ int creat(int l,int r,int index)
         segtree[index]=a[l];
         return a[l];
     }
-    segtree[index]=creat(l,(l+r)/2,2*index)+creat((l+r)/2+1,r,2*index+1);
+    segtree[index]=min(creat(l,(l+r)/2,2*index),creat((l+r)/2+1,r,2*index+1));
     return segtree[index];
 }
 int32_t main()
@@ -65,10 +64,8 @@ int32_t main()
         for(int i=1;i<=n;i++)
             cin>>a[i];
         creat(1,n,1);
-        for(int i=1;i<=16;i++)
-            cout<<segtree[i]<<" ";
-        cout<<endl;
-        cout<<query(1,n,1,5,1)<<endl;
-        update(1,n,4,11,1);
-        cout<<query(1,n,1,4,1)<<endl;
+        cout<<query(1,n,5,7,1)<<endl;
+        update(1,n,3,-13,1);
+        update(1,n,3,13,1);
+        cout<<query(1,n,1,n,1)<<endl;
 }

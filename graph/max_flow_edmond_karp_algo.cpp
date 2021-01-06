@@ -2,7 +2,7 @@
     STREAM_CIPHER
     05-sep-2020
 */
-//dijkastra single source shortest path algorithm
+//max flow in directed graph in O(V*V*E)
 #include<bits/stdc++.h>
 using namespace std;
 void __print(long long x) {cerr << x;}void __print(unsigned long long x) {cerr << x;}void __print(long double x) {cerr << x;}
@@ -30,7 +30,8 @@ int inf=0x3f3f3f3f3f3f3f3f;
 const int mod=1e9+7;
 const int mx=5*1000000;//5*64M bit ->5*8M byte ->40MB size for long long int (64 bit)
 vector<int>g[mx];
-map<pair<int,int>,int>weight;
+map<pair<int,int>,int>wt;
+int s,t,min_flow;
 bool vis[mx];
 int dis[mx];
 int parent[mx];
@@ -49,14 +50,29 @@ void dijkastra(int start)
         vis[node]=1;
         for(auto i:g[node])
         {
-            if(dis[i]>(dis[node]+weight[{node,i}]))
+            if(dis[i]>(dis[node]+1)&&wt[{node,i}]!=0)
             {
-                dis[i]=dis[node]+weight[{node,i}];
+                dis[i]=dis[node]+1;
                 q.insert(i);
                 parent[i]=node;
+                min_flow=min(min_flow,wt[{node,i}]);
             }
         }
     }
+}
+vector<int> shortest_path()
+{
+    vector<int>ans;
+    memset(vis,0,sizeof vis);
+    parent[s]=-1;
+    dijkastra(s);
+    int b=t;
+    if(dis[b]==inf)
+        return ans;
+    while(b!=-1)
+        ans.push_back(b),b=parent[b];
+    reverse(all(ans));
+    return ans;
 }
 int32_t main()
 {
@@ -75,23 +91,23 @@ int32_t main()
             u--,v--;
             g[u].push_back(v);
             g[v].push_back(u);
-            weight[{u,v}]=w;
-            weight[{v,u}]=w;
+            wt[{u,v}]=w;
         }
-        int start_node=0;
-        parent[start_node]=-1;
-        dijkastra(start_node);
-        //shortest distance of each node from start_node
-        for(int i=0;i<n;i++)
-            cout<<dis[i]<<" ";
-        cout<<endl;
-        //print shortest path from start to b
-        for(int i=0;i<n;i++)
-            cout<<parent[i]<<" ";
-        cout<<endl;
-        //printing shortest path from b to start_node
-        int b=4;
-        b--;
-        while(b!=-1)
-            cout<<b+1<<" ",b=parent[b];
+        cin>>s>>t;
+        s--,t--;
+        int max_flow=0;
+        while(1)
+        {
+            min_flow=inf;
+            vector<int>path=shortest_path();
+            if(path.size()==0)
+                break;
+            for(int i=0;i<path.size()-1;i++)
+            {
+                wt[{path[i],path[i+1]}]-=min_flow;
+                wt[{path[i+1],path[i]}]+=min_flow;
+            }
+            max_flow+=min_flow;
+        }
+        cout<<max_flow<<endl;
 }

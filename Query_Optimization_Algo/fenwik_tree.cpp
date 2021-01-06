@@ -1,78 +1,46 @@
- /*  CREATED BY
+/*  CREATED BY
     STREAM_CIPHER
-    29-apr-2020
+    10-oct-2020
 */
-// question
-// given array of integrs and q quries of two type in type 1  query we need to answer sum of elements of array in given
-// range in type 2 query we need to update a particular element;
+//range sum query using binary indexed tree
 #include<bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
-ll BIT_array[300000];
-//query fns depends on question logic;
-ll query(int index,int n)
+#define int long long int
+#define double long double
+#define debug1(a) cout<<#a<<"="<<(a)<<"\n"
+#define debug2(a,b) cout<<#a<<"="<<(a)<<","<<#b<<"="<<(b)<<"\n"
+#define debug3(a,b,c) cout<<#a<<"="<<(a)<<","<<#b<<"="<<(b)<<","<<#c<<"="<<(c)<<"\n"
+#define fix_precision(n) cout<<fixed<<setprecision(n)
+#define all(a) a.begin(),a.end()
+const double pi=acos(-1.0);
+int inf=0x3f3f3f3f3f3f3f3f;
+const int mod=1e9+7;
+const int mx=5*1000000;//5*64M bit ->5*8M byte ->40MB size for long long int (64 bit)
+int BIT[mx];
+int a[mx];
+void update(int index,int value,int n)
 {
-	index++;
-	ll ans=0;
-	while(index>0)
-	{
-		ans+=BIT_array[index];
-		index-=index&(-index);
-	}
-	return ans;
+    while(index<=n)
+        BIT[index]+=value,index+=index&(-index);
 }
-void updateBIT(int index,ll value,int n)
+int query(int index,int n)
 {
-	index++;
-	while(index<=n)
-	{
-		BIT_array[index]+=value;
-		index+=index&(-index);
-	}
+    int ans=0;
+    while(index>0)
+        ans+=BIT[index],index-=index&(-index);
+    return ans;
 }
-
-constructBIT(ll a[],int n)
+int32_t main()
 {
-	memset(BIT_array,0,sizeof BIT_array);
-	for(int i=0;i<n;i++)
-	{
-		updateBIT(i,a[i],n);
-	}	
-}
-int main()
-{
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	#ifndef ONLINE_JUDGE
-		freopen("input.txt","r",stdin);
-		freopen("output.txt","w",stdout);
-	#endif
-		int n;
-		cin>>n;
-		ll a[n+1];
-		for(int i=0;i<n;i++)
-			cin>>a[i];
-		constructBIT(a,n);
-		for(int i=1;i<=n;i++)
-			cout<<BIT_array[i]<<" ";
-		cout<<endl;
-		int q;
-		cin>>q;
-		while(q--)
-		{
-			int type,l,r;
-			cin>>type>>l>>r;
-			if(type==1)
-			{
-				l--,r--;
-				ll ans=query(r,n)-query(l-1,n);
-				cout<<ans<<endl;
-			}
-			else
-			{
-				l--;
-				ll diff=r-a[l];
-				updateBIT(l,diff,n);
-			}
-		}
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    #ifndef ONLINE_JUDGE
+        freopen("input.txt","r",stdin);
+        // freopen("output.txt","w",stdout);
+    #endif
+        for(int i=1;i<=n;i++)
+            a[i]=1;
+        for(int i=1;i<=n;i++)
+            update(i,a[i],n);
+        query(index,n);//to find sum from 1 to index;
 }
